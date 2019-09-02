@@ -1,4 +1,4 @@
-%takes current condition of the road and then gives out optimized decision about the traffic lights
+ %takes current condition of the road and then gives out optimized decision about the traffic lights
 include "globals.mzn";
 
 %we need adjacency list for representing the map. nodes=intersections, edges=roads;
