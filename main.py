@@ -25,12 +25,12 @@ def initialize():
         while index<len(lst):
             final_lst.append([lst[index],lst[index+1],lst[index+2]])
             index=index+3
-        print(final_lst)
+       # print(final_lst)
         adj_list.append(final_lst)
         lst2=[0]*(n)
         lst_imp=[0]*(n)
         for j in final_lst:
-            print(j)
+           # print(j)
             lst2[j[0]-1]=j[1]
             lst_imp[j[0]-1]=j[2]
         data.append(lst2)
@@ -43,14 +43,14 @@ def initialize():
 
     max_cost=sol_max[0]['max_cost']
     max_imp=sol_max[0]['max_imp']
-    print(max_cost,"look at this max_cost")
-    print(max_imp,"look at this max_imp")
+    print("max cost = ",max_cost)
+    print("max imp = ",max_imp)
     max_turn=25
     print("how fast do you want the system to update signals?")
     signal_period=int(input())
     prev=[[0]*(n)]*(n)
     data={'n':n,'congestion_graph':data,'max_cost':max_cost,'max_turn':max_turn,'prev':prev,'importance':importance,'max_imp':max_imp}
-    print(data)
+     #   print(data)
     dzn=pm.dict2dzn(data,fout='datafrompython.dzn')
     return [dzn,signal_period]
 
@@ -60,7 +60,7 @@ def initialize():
 def print_decision(decision):
     gr_list=[0]*len(decision)
     data=pm.dzn2dict('datafrompython.dzn')
-    print(data)
+  #  print(data)
     graph=data['congestion_graph']
     importance=data['importance']
     for lst_in in range(len(decision)):
@@ -68,8 +68,10 @@ def print_decision(decision):
             if decision[lst_in][i]==1:
                 gr_list[lst_in]=i+1
 
-    print(gr_list)
+   # print(gr_list)
     for i in range(len(adj_list)):
+        print("")
+        print("")
         print("for intersection "+str(i+1)+" =============================>>>>>>>>>")
         for j in range (len(adj_list[i])):
             if adj_list[i][j][0]==gr_list[i]:
@@ -97,8 +99,8 @@ def update_cost(solns,dzn,period):
                     prev_queue.popleft()
             elif  j in adj_list[i]:
                 gr[j][i]+=reduction//3
-    print("congestion_graph")
-    print(gr)
+   # print("congestion_graph")
+  #  print(gr)
     data['congestion_graph']=gr
     n=len(gr)
     prev = [[0] * n for i in range(n)]
